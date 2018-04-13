@@ -170,12 +170,12 @@
   }
   
   __weak __typeof(self) weakSelf = self;
-  [self.batchChanges insertItemWithBlock:^{
+	[self.batchChanges deleteItemWithBlock:^{
     [weakSelf.treeNodeCollectionController removeItemsAtIndexes:[NSIndexSet indexSetWithIndex:index] inParent:parent updates:^(NSIndexSet *removedIndexes) {
       UITableViewRowAnimation tableViewRowAnimation = [RATreeView tableViewRowAnimationForTreeViewRowAnimation:animation];
       [weakSelf.tableView deleteRowsAtIndexPaths:IndexesToIndexPaths(removedIndexes) withRowAnimation:tableViewRowAnimation];
     }];
-  } atIndex:idx];
+  } lastIndex:idx];
 }
 
 #pragma mark -
